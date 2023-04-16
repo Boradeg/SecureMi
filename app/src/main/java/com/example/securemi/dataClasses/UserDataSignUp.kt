@@ -1,4 +1,4 @@
-package com.example.securemi
+package com.example.securemi.dataClasses
 
 class userDataSignUp {
         var email: String? = null

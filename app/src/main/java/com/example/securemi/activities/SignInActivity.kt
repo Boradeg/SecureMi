@@ -1,4 +1,4 @@
-package com.example.securemi
+package com.example.securemi.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -14,9 +14,11 @@ class SignInActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding= ActivitySignInBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        actionBar?.hide()
+        supportActionBar?.hide()
         firebaseAuth= FirebaseAuth.getInstance()
         binding.textView.setOnClickListener {
-             startActivity(Intent(this,SignUpActivity::class.java))
+             startActivity(Intent(this, SignUpActivity::class.java))
             //startActivity(Intent(this,MainActivity::class.java))
         }
         binding.button.setOnClickListener {
@@ -29,7 +31,7 @@ class SignInActivity : AppCompatActivity() {
                     if(it.isSuccessful)
                     {
 
-                        startActivity(Intent(this,MainActivity::class.java))
+                        startActivity(Intent(this, MainActivity::class.java))
 
                     }
                     else{
