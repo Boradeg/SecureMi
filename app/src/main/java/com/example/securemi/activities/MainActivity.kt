@@ -22,12 +22,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding=ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         val navHostFragment=supportFragmentManager.findFragmentById(R.id.fragmentContainer)
         val navController=navHostFragment!!.findNavController()
         val popupMenu= PopupMenu(this,null)
         popupMenu.inflate(R.menu.bottomnavbarmenu)
 
         binding.bottomBar.setupWithNavController(popupMenu.menu,navController)
+
 //        navController.addOnDestinationChangedListener { controller, destination, arguments ->
 //            title = when (destination.id) {
 //                R.id.homeFragment2 -> "Home"

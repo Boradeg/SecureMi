@@ -19,6 +19,15 @@
         <action
             android:id="@+id/action_homeFragment2_to_userFragment"
             app:destination="@id/userFragment" />
+        <action
+            android:id="@+id/action_homeFragment2_to_signInActivity"
+            app:destination="@id/signInActivity" />
+        <action
+            android:id="@+id/action_homeFragment2_to_addTrustyNumberActivity"
+            app:destination="@id/addTrustyNumberActivity" />
+        <action
+            android:id="@+id/action_homeFragment2_to_viewRegisteredActivity"
+            app:destination="@id/viewRegisteredActivity" />
     </fragment>
     <fragment
         android:id="@+id/helplineFragment"
@@ -39,4 +48,19 @@
         android:name="com.example.securemi.Fragment.UserFragment"
         android:label="fragment_user"
         tools:layout="@layout/fragment_user" />
+    <activity
+        android:id="@+id/signInActivity"
+        android:name="com.example.securemi.activities.SignInActivity"
+        android:label="activity_sign_in"
+        tools:layout="@layout/activity_sign_in" />
+    <activity
+        android:id="@+id/addTrustyNumberActivity"
+        android:name="com.example.securemi.activities.AddTrustyNumberActivity"
+        android:label="activity_add_trusty_number"
+        tools:layout="@layout/activity_add_trusty_number" />
+    <activity
+        android:id="@+id/viewRegisteredActivity"
+        android:name="com.example.securemi.activities.ViewRegisteredActivity"
+        android:label="activity_view_registered"
+        tools:layout="@layout/activity_view_registered" />
 </navigation>

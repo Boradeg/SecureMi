@@ -39,7 +39,7 @@ class SignUpActivity : AppCompatActivity() {
                     firebaseAuth.createUserWithEmailAndPassword(email,pass).addOnCompleteListener {
                         if(it.isSuccessful)
                         {     Firebase.database.reference.child("USER")
-                            .child(FirebaseAuth.getInstance().currentUser!!.uid).child("user Detail")
+                            .child(FirebaseAuth.getInstance().currentUser!!.uid)
                             .setValue(userDataSignUp)
                             .addOnSuccessListener {
                                 Toast.makeText(this, "crete user for app", Toast.LENGTH_SHORT)

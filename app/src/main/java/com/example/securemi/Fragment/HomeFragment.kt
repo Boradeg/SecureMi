@@ -1,61 +1,81 @@
 package com.example.securemi.Fragment
 
+import android.app.Activity
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
+import android.telephony.SmsManager
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.securemi.R
+import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat.checkSelfPermission
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+import com.example.securemi.activities.AddTrustyNumberActivity
 
-/**
- * A simple [Fragment] subclass.
- * Use the [HomeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+import com.example.securemi.activities.ViewRegisteredActivity
+import com.example.securemi.activities.userTrustyNumber
+
+import com.example.securemi.databinding.FragmentHomeBinding
+
 class HomeFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-
-    }
-
+    private lateinit var binding:FragmentHomeBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        binding=FragmentHomeBinding.inflate(layoutInflater)
+        binding.addTrustyNum.setOnClickListener {
+       startActivity(Intent(requireContext(),AddTrustyNumberActivity::class.java))
+        }
+        binding.viewRegistred.setOnClickListener {
+            startActivity(Intent(requireContext(),ViewRegisteredActivity::class.java))
+        }
+        binding.sos.setOnClickListener {
+            permissionAccess()
+        }
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HomeFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HomeFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    private fun permissionAccess() {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+        {
+            if(checkSelfPermission(requireContext(),android.Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED)
+            {
+
+                sendSms()
             }
+            else
+            {
+
+                ActivityCompat.requestPermissions(requireActivity(), arrayOf(android.Manifest.permission.SEND_SMS),101)
+            }
+        }
     }
-}
+
+    private fun sendSms() {
+
+        try{
+
+            var smsManager =SmsManager.getDefault() as SmsManager
+//                var numbers=arrayOf("234292929","838383838","373773377")
+//                for(i in numbers)
+//                {
+//                    smsManager.sendTextMessage(i,null,"hj",null,null)
+//                }
+
+            smsManager.sendTextMessage(userTrustyNumber,null,"hi",null,null)
+            Toast.makeText(requireContext(), "Message Sent SuccessFully", Toast.LENGTH_SHORT).show()
+
+        }
+        catch (e:java.lang.Exception)
+        {
+
+            Toast.makeText(requireContext(), e.toString(), Toast.LENGTH_SHORT).show()
+        }
+    }
+    }
