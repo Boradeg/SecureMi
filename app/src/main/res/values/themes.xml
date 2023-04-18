@@ -3,7 +3,7 @@
     <style name="Theme.SecureMi" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="android:windowTranslucentStatus">true</item>
-        <item name="android:windowTranslucentNavigation">true</item>
+<!--        <item name="android:windowTranslucentNavigation">true</item>-->
 
         <item name="colorPrimary">@android:color/transparent</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
