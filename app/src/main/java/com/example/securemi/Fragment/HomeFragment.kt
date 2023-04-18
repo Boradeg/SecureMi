@@ -1,6 +1,5 @@
 package com.example.securemi.Fragment
 
-import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
@@ -13,13 +12,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat.checkSelfPermission
-
-import com.example.securemi.activities.AddTrustyNumberActivity
-
-import com.example.securemi.activities.ViewRegisteredActivity
-import com.example.securemi.activities.userTrustyNumber
+import com.example.securemi.activities.*
+import com.example.securemi.dataClasses.UserTrustyDetailDataClass
 
 import com.example.securemi.databinding.FragmentHomeBinding
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class HomeFragment : Fragment() {
     private lateinit var binding:FragmentHomeBinding
@@ -34,11 +32,26 @@ class HomeFragment : Fragment() {
         binding.viewRegistred.setOnClickListener {
             startActivity(Intent(requireContext(),ViewRegisteredActivity::class.java))
         }
+
         binding.sos.setOnClickListener {
+
+            getTrustyNumber()
             permissionAccess()
         }
         // Inflate the layout for this fragment
         return binding.root
+    }
+
+    private fun getTrustyNumber() {
+        Firebase.firestore.collection(numb).get().addOnSuccessListener { result ->
+            var temp = ArrayList<UserTrustyDetailDataClass>()
+            for (res in result.documents) {
+                var question: UserTrustyDetailDataClass? =
+                    res.toObject(UserTrustyDetailDataClass::class.java)//que come from databese 1 by 1
+                temp.add(question!!)                                      //que add in array
+            }
+            questionList.addAll(temp)
+        }
     }
 
     private fun permissionAccess() {
@@ -62,19 +75,25 @@ class HomeFragment : Fragment() {
         try{
 
             var smsManager =SmsManager.getDefault() as SmsManager
-//                var numbers=arrayOf("234292929","838383838","373773377")
-//                for(i in numbers)
-//                {
-//                    smsManager.sendTextMessage(i,null,"hj",null,null)
-//                }
+            Toast.makeText(requireContext(), questionList[0].userNumber.toString(), Toast.LENGTH_SHORT).show()
 
-            smsManager.sendTextMessage(userTrustyNumber,null,"hi",null,null)
+//                var numbers=arrayOf("234292929","838383838","373773377")
+                for(i in questionList)
+                {
+                    smsManager.sendTextMessage(i.userNumber.toString(),null,"hi",null,null)
+              //      Toast.makeText(requireContext(), "Message Sent SuccessFully", Toast.LENGTH_SHORT).show()
+                }
             Toast.makeText(requireContext(), "Message Sent SuccessFully", Toast.LENGTH_SHORT).show()
+
+            //                    smsManager.sendTextMessage(i.userNumber.toString(),null,"hi",null,null)
+               // smsManager.sendTextMessage(questionList[0].userNumber.toString(),null,"hi",null,null)
+
+           // Toast.makeText(requireContext(), questionList[0].userNumber.toString(), Toast.LENGTH_SHORT).show()
+
 
         }
         catch (e:java.lang.Exception)
         {
-
             Toast.makeText(requireContext(), e.toString(), Toast.LENGTH_SHORT).show()
         }
     }

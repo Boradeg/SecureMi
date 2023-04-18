@@ -13,8 +13,9 @@ import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.fragment.findNavController
 import com.example.securemi.R
+import com.example.securemi.dataClasses.UserTrustyDetailDataClass
 import com.example.securemi.databinding.ActivityMainBinding
-
+var questionList = ArrayList<UserTrustyDetailDataClass>()
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding:ActivityMainBinding

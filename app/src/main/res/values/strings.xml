@@ -2,4 +2,8 @@
     <string name="app_name">SecureMi</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="message">gokul has made an emergency call, they screamed for help
+    and SHIELD has sent this SOS to you because you are in their Emergency Contacts.
+    Please call them immediately.</string>
+    <string name="add_trusty_number">Add Trusty Number</string>
 </resources>

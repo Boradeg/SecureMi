@@ -1,16 +1,22 @@
 package com.example.securemi.dataClasses
 
 class UserTrustyDetailDataClass {
-    var userNumber: String? = null
     var userName: String? = null
-
-
-
+    var userNumber: String? = null
     constructor()
-    constructor(name: String?,number:String) {
-
-        this.userNumber = number
-        this.userName = name
-
+    constructor(userName: String?, userNumber: String?) {
+        this.userName = userName
+        this.userNumber = userNumber
     }
+
+//    constructor(
+//
+//        userName: String?,
+//        userNumber: String?
+//    ) {
+//
+//        this.userName = userName
+//        this.userNumber = userNumber
+//
+//    }
 }

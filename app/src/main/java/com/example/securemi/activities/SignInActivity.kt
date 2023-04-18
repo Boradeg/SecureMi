@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.widget.Toast
 import com.example.securemi.databinding.ActivitySignInBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class SignInActivity : AppCompatActivity() {
     private lateinit var firebaseAuth: FirebaseAuth
@@ -47,6 +49,13 @@ class SignInActivity : AppCompatActivity() {
                 Toast.makeText(this, "Empty field  are Not Allowed", Toast.LENGTH_SHORT).show()
 
             }
+        }
+    }
+    override fun onStart() {
+        super.onStart()
+        if (Firebase.auth.currentUser != null) {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
         }
     }
 }

@@ -1,9 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context=".activities.ViewRegisteredActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:layout_marginTop="100dp"
+        android:id="@+id/num1show"
+        android:textSize="50dp"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Number1"
+        />
+    <TextView
+        android:id="@+id/num2show"
+        android:textSize="50dp"
+        android:layout_marginTop="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Number2"
+        />
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/showNumb"
+        android:layout_marginTop="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Show Number"
+        />
+</LinearLayout>

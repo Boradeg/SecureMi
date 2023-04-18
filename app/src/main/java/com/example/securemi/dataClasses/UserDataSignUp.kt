@@ -1,6 +1,6 @@
 package com.example.securemi.dataClasses
 
-class userDataSignUp {
+class UserDataSignUp {
         var email: String? = null
     var numb: String? = null
 

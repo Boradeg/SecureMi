@@ -48,7 +48,7 @@
                 android:layout_height="70dp"
                 android:layout_marginStart="60dp"
                 android:gravity="center"
-                android:text="Add Trusty Number"
+                android:text="@string/add_trusty_number"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
         </androidx.cardview.widget.CardView>
