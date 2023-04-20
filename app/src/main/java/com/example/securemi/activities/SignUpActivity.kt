@@ -7,10 +7,13 @@ import android.widget.Toast
 import com.example.securemi.dataClasses.UserDataSignUp
 import com.example.securemi.databinding.ActivitySignUpBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 var emailMsg:String ?= null
-var numb:String=""
+
+
+
 class SignUpActivity : AppCompatActivity() {
     lateinit var binding:ActivitySignUpBinding
     private lateinit var firebaseAuth: FirebaseAuth
@@ -30,6 +33,7 @@ class SignUpActivity : AppCompatActivity() {
             val confirmPass=binding.confirmPassEt.text.toString()
             numb=binding.numberET.text.toString()
 
+
             if(email.isNotEmpty() &&pass.isNotEmpty() &&confirmPass.isNotEmpty())
             {
                 if(pass==confirmPass)
@@ -46,6 +50,7 @@ class SignUpActivity : AppCompatActivity() {
                                 Toast.makeText(this, "crete user for app", Toast.LENGTH_SHORT)
                                     .show()
                                 emailMsg=binding.emailEt.text.toString()
+
                             }
                             startActivity(Intent(this, MainActivity::class.java))
 
@@ -66,4 +71,5 @@ class SignUpActivity : AppCompatActivity() {
             }
         }
     }
+
 }

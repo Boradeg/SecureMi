@@ -1,10 +1,17 @@
 package com.example.securemi.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.example.securemi.dataClasses.UserTrustyDetailDataClass
 import com.example.securemi.databinding.ActivityViewRegisteredBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 //lateinit var questionList: ArrayList<UserTrustyDetailDataClass>
@@ -18,8 +25,20 @@ class ViewRegisteredActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityViewRegisteredBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         binding.showNumb.setOnClickListener {
-            showData()
+            try{
+                showData()
+            }
+            catch(e:Exception)
+            {
+                Toast.makeText(this,"You are not added friend or family member", Toast.LENGTH_SHORT).show()
+            }
+
+        }
+        binding.buttonLogout.setOnClickListener {
+            //Firebase.auth.currentUser = null
+           // startActivity(Intent(this,SignInActivity::class.java).putExtra("null","null"))
         }
 
 
@@ -27,7 +46,7 @@ class ViewRegisteredActivity : AppCompatActivity() {
 
     private fun showData() {
 
-        Firebase.firestore.collection(numb).get().addOnSuccessListener { result ->
+        Firebase.firestore.collection(userUid).get().addOnSuccessListener { result ->
             var temp = ArrayList<UserTrustyDetailDataClass>()
             for (res in result.documents) {
                 var question: UserTrustyDetailDataClass? =
@@ -35,11 +54,6 @@ class ViewRegisteredActivity : AppCompatActivity() {
                 temp.add(question!!)                                      //que add in array
             }
             questionList.addAll(temp)
-//            for(i in questionList)
-//            {
-//                Toast.makeText(this, questionList.get(0).userNumber, Toast.LENGTH_SHORT).show()
-//                Toast.makeText(this, questionList.get(1).userNumber, Toast.LENGTH_SHORT).show()
-//            }
             binding.showNumb.text = questionList.get(0).userNumber.toString()
             binding.num2show.text = questionList.get(0).userName.toString()
             binding.num1show.text = questionList.get(0).userNumber.toString()

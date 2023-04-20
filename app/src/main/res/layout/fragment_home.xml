@@ -23,34 +23,20 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="70dp"
             android:layout_margin="10dp"
             app:cardCornerRadius="10dp"
             app:cardElevation="20dp">
-
-            <RelativeLayout
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="10dp"
-                android:gravity="center_vertical">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/contact" />
-
-            </RelativeLayout>
 
             <TextView
                 android:id="@+id/addTrustyNum"
                 android:layout_width="wrap_content"
                 android:layout_height="70dp"
-                android:layout_marginStart="60dp"
                 android:gravity="center"
-                android:text="@string/add_trusty_number"
+                android:text="Add Friend"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
+
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
@@ -59,31 +45,14 @@
             android:layout_margin="10dp"
             app:cardCornerRadius="10dp"
             app:cardElevation="20dp">
-
-            <RelativeLayout
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="10dp"
-                android:gravity="center_vertical">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/people" />
-
-            </RelativeLayout>
-
             <TextView
                 android:id="@+id/viewRegistred"
                 android:layout_width="wrap_content"
                 android:layout_height="70dp"
-                android:layout_marginStart="60dp"
-                android:gravity="center"
-                android:text="View Registered"
+                android:text="View Friends"
                 android:textColor="@color/black"
+                android:gravity="center"
                 android:textSize="20dp" />
-
         </androidx.cardview.widget.CardView>
 
         <androidx.constraintlayout.widget.ConstraintLayout

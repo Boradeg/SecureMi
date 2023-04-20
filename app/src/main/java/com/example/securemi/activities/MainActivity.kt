@@ -7,6 +7,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationManager
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
@@ -17,6 +18,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.fragment.findNavController
@@ -25,10 +27,17 @@ import com.example.securemi.dataClasses.UserTrustyDetailDataClass
 import com.example.securemi.databinding.ActivityMainBinding
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
+
 var longitudes=""
 var latitudes=""
+var id=""
+var userUid:String=""
+
 var questionList = ArrayList<UserTrustyDetailDataClass>()
 class MainActivity : AppCompatActivity() {
+    private lateinit var db: DatabaseReference
 
     private lateinit var binding:ActivityMainBinding
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
@@ -36,27 +45,27 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding=ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
+        //get num user
+        //get user email
+        getUSerUid()
 
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
+        permissionAccess()
         getCurrentLocations()
         val navHostFragment=supportFragmentManager.findFragmentById(R.id.fragmentContainer)
         val navController=navHostFragment!!.findNavController()
         val popupMenu= PopupMenu(this,null)
         popupMenu.inflate(R.menu.bottomnavbarmenu)
-
         binding.bottomBar.setupWithNavController(popupMenu.menu,navController)
 
-//        navController.addOnDestinationChangedListener { controller, destination, arguments ->
-//            title = when (destination.id) {
-//                R.id.homeFragment2 -> "Home"
-//                R.id.helplineFragment -> "helpline"
-//                R.id.notificationFragment -> "notification"
-//                R.id.userFragment -> "user"
-//                else -> "pkart"
-//            }
-//        }
+    }
 
-
+    private fun getUSerUid() {
+        db=FirebaseDatabase.getInstance().getReference("USER")
+        db.child(FirebaseAuth.getInstance().currentUser!!.uid).get().addOnSuccessListener {
+            userUid = it.child("numb").value.toString()
+            Toast.makeText(this, userUid.toString(), Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -108,7 +117,7 @@ class MainActivity : AppCompatActivity() {
                         Toast.makeText(this, "null location", Toast.LENGTH_SHORT).show()
                     }
                     else{
-                        Toast.makeText(this, "success", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "success location", Toast.LENGTH_SHORT).show()
                         longitudes= location.longitude.toString()
                        latitudes= location.latitude.toString()
 
@@ -179,5 +188,20 @@ class MainActivity : AppCompatActivity() {
         // val locationManager:LocationManager=getSystemService(LOCATION_SERVICE)as LocationManager
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)||locationManager.isProviderEnabled(
             LocationManager.NETWORK_PROVIDER)
+    }
+    private fun permissionAccess() {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+        {
+            if(ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED)
+            {
+
+                Toast.makeText(this, "permission granted for msg send", Toast.LENGTH_SHORT).show()
+            }
+            else
+            {
+
+                ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.SEND_SMS),101)
+            }
+        }
     }
 }

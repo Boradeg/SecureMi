@@ -8,7 +8,7 @@ import com.example.securemi.databinding.ActivitySignInBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-
+var numb:String=""
 class SignInActivity : AppCompatActivity() {
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var binding: ActivitySignInBinding
@@ -21,7 +21,7 @@ class SignInActivity : AppCompatActivity() {
         firebaseAuth= FirebaseAuth.getInstance()
         binding.textView.setOnClickListener {
              startActivity(Intent(this, SignUpActivity::class.java))
-            //startActivity(Intent(this,MainActivity::class.java))
+
         }
         binding.button.setOnClickListener {
             val email=binding.emailEt.text.toString()
@@ -50,12 +50,13 @@ class SignInActivity : AppCompatActivity() {
 
             }
         }
+    }  override fun onStart() {
+    //   intent.getStringExtra("null")
+        super.onStart()
+        if (Firebase.auth.currentUser != null) {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
     }
-//    override fun onStart() {
-//        super.onStart()
-//        if (Firebase.auth.currentUser != null) {
-//            startActivity(Intent(this, MainActivity::class.java))
-//            finish()
-//        }
-//    }
+
 }

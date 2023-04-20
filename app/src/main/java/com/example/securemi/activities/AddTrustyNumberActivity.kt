@@ -38,18 +38,25 @@ class AddTrustyNumberActivity : AppCompatActivity() {
         dbRef= Firebase.firestore
         binding.saveBtn.setOnClickListener {
 
-            for(i in numArray)
-            {
-                Toast.makeText(this,i, Toast.LENGTH_SHORT).show()
-
-            }
+//            for(i in numArray)
+//            {
+//                Toast.makeText(this,i, Toast.LENGTH_SHORT).show()
+//
+//            }
 
 
             if(binding.trustyNumber.text.isNotEmpty()&&binding.trustyName.text.isNotEmpty())
             {
                // writeData()
-                writeDataToFirestore()
-                readData()
+               try {
+                   writeDataToFirestore()
+
+               }
+               catch(e:Exception)
+               {
+                   Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show()
+               }
+                //readData()
             }
             else{
 
@@ -67,13 +74,13 @@ class AddTrustyNumberActivity : AppCompatActivity() {
     }
 
     private fun writeDataToFirestore() {
-        var e=9
+
         var name=binding.trustyName.text.toString()
         var number=binding.trustyNumber.text.toString()
         val map= mutableMapOf<String,String>()
         map.put(NAME,name)
         map.put(NUMBER,number)
-        dbRef.collection(numb).document().set(map).addOnSuccessListener {
+        dbRef.collection(userUid).document().set(map).addOnSuccessListener {
             Toast.makeText(this, "success", Toast.LENGTH_SHORT).show()
             binding.trustyNumber.text.clear()
             binding.trustyName.text.clear()
@@ -84,13 +91,21 @@ class AddTrustyNumberActivity : AppCompatActivity() {
     }
 
     private fun readData() {
-
         db=FirebaseDatabase.getInstance().getReference("USER")
-        db.child(FirebaseAuth.getInstance().currentUser!!.uid).child("Trusty Detail").get().addOnSuccessListener{
-            userTrustyNumber=it.child("userNumber").value.toString()
+        db.child(FirebaseAuth.getInstance().currentUser!!.uid).get().addOnSuccessListener{
+             userUid = it.child("email").value.toString()
+            Toast.makeText(this, userUid.toString(), Toast.LENGTH_SHORT).show()
+
             // var userTrustyNum=it.child("userName").value.toString()
             Toast.makeText(this, "userTrustyNumber added successfully", Toast.LENGTH_SHORT).show()
         }
+//        db=FirebaseDatabase.getInstance().getReference("USER")
+//
+//        db.child(FirebaseAuth.getInstance().currentUser!!.uid).child("Trusty Detail").get().addOnSuccessListener{
+//            userTrustyNumber=it.child("userNumber").value.toString()
+//            // var userTrustyNum=it.child("userName").value.toString()
+//            Toast.makeText(this, "userTrustyNumber added successfully", Toast.LENGTH_SHORT).show()
+//        }
     }
 
     private fun writeData() {
@@ -99,19 +114,12 @@ class AddTrustyNumberActivity : AppCompatActivity() {
             .child(FirebaseAuth.getInstance().currentUser!!.uid).child("Trusty Detail")
         var userName=binding.trustyName.text.toString()
         var userNumber=binding.trustyNumber.text.toString()
-
         val userTrustyDetail= UserTrustyDetailDataClass(userName,userNumber)
         database.setValue(userTrustyDetail).addOnCompleteListener{
             Toast.makeText(this, "Data Inserted Successfully", Toast.LENGTH_SHORT).show()
-
-
-
        binding.trustyNumber.text.clear()
        binding.trustyName.text.clear()
         }
-
-//        Toast.makeText(this, numArray[0], Toast.LENGTH_SHORT).show()
-//        Toast.makeText(this, numArray[1], Toast.LENGTH_SHORT).show()
 
 
     }
