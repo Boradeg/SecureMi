@@ -34,6 +34,7 @@ var longitudes=""
 var latitudes=""
 var id=""
 var userUid:String=""
+var message:String = ""
 
 var questionList = ArrayList<UserTrustyDetailDataClass>()
 class MainActivity : AppCompatActivity() {
@@ -45,6 +46,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding=ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         //get num user
         //get user email
         getUSerUid()
@@ -52,6 +54,8 @@ class MainActivity : AppCompatActivity() {
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
         permissionAccess()
         getCurrentLocations()
+
+
         val navHostFragment=supportFragmentManager.findFragmentById(R.id.fragmentContainer)
         val navController=navHostFragment!!.findNavController()
         val popupMenu= PopupMenu(this,null)
@@ -60,9 +64,18 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    private fun readNotification() {
+        db=FirebaseDatabase.getInstance().getReference("USER")
+        db.child(numb).get().addOnSuccessListener {
+            var notif = it.child("N2").value.toString()
+
+            Toast.makeText(this, notif.toString(), Toast.LENGTH_SHORT).show()
+        }
+    }
+
     private fun getUSerUid() {
         db=FirebaseDatabase.getInstance().getReference("USER")
-        db.child(FirebaseAuth.getInstance().currentUser!!.uid).get().addOnSuccessListener {
+        db.child(numb).get().addOnSuccessListener {
             userUid = it.child("numb").value.toString()
             Toast.makeText(this, userUid.toString(), Toast.LENGTH_SHORT).show()
         }
@@ -120,6 +133,7 @@ class MainActivity : AppCompatActivity() {
                         Toast.makeText(this, "success location", Toast.LENGTH_SHORT).show()
                         longitudes= location.longitude.toString()
                        latitudes= location.latitude.toString()
+                        message= "Plz Help Me.location: https://maps.google.com/?q=$latitudes,$longitudes"
 
                     }
 

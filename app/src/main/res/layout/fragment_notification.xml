@@ -4,11 +4,51 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragment.NotificationFragment">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
 
-    <!-- TODO: Update blank fragment layout -->
+<!--    <EditText-->
+<!--        android:id="@+id/enterDataEdit2"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="30dp"-->
+<!--        android:hint="Enter name"-->
+<!--        android:textSize="50dp"-->
+<!--   />-->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="notification" />
+        android:id="@+id/dataReceiveEdit2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="No notification"
+        android:textSize="50dp" />
 
+<!--    <androidx.appcompat.widget.AppCompatButton-->
+<!--        android:id="@+id/sendData2"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginHorizontal="16dp"-->
+<!--        android:layout_marginTop="30dp"-->
+<!--        android:background="@color/yellow"-->
+<!--        android:text="SendData"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:textStyle="bold"-->
+<!--         />-->
+
+<!--    <androidx.appcompat.widget.AppCompatButton-->
+<!--        android:id="@+id/receiveData2"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginHorizontal="16dp"-->
+<!--        android:layout_marginTop="30dp"-->
+<!--        android:background="@color/yellow"-->
+<!--        android:text="ReceiveData"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:textStyle="bold"-->
+<!--/>-->
+
+</LinearLayout>
 </FrameLayout>

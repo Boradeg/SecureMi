@@ -28,6 +28,7 @@ class AddTrustyNumberActivity : AppCompatActivity() {
 
     val NAME="userName"
     val NUMBER="userNumber"
+    val NOTIFICATION="notification"
     val COLLECTION="notes"
     val DOCUMENT="innernotes"
     private lateinit var binding:ActivityAddTrustyNumberBinding
@@ -56,7 +57,7 @@ class AddTrustyNumberActivity : AppCompatActivity() {
                {
                    Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show()
                }
-                //readData()
+
             }
             else{
 
@@ -64,7 +65,6 @@ class AddTrustyNumberActivity : AppCompatActivity() {
                 binding.trustyNumber.error="Enter Valid Number"
             }
 
-            //readData()
         }
 
 
@@ -77,9 +77,11 @@ class AddTrustyNumberActivity : AppCompatActivity() {
 
         var name=binding.trustyName.text.toString()
         var number=binding.trustyNumber.text.toString()
+        var notification=binding.trustyName.text.toString()
         val map= mutableMapOf<String,String>()
         map.put(NAME,name)
         map.put(NUMBER,number)
+       // map.put(NOTIFICATION,notification)
         dbRef.collection(userUid).document().set(map).addOnSuccessListener {
             Toast.makeText(this, "success", Toast.LENGTH_SHORT).show()
             binding.trustyNumber.text.clear()
@@ -90,6 +92,8 @@ class AddTrustyNumberActivity : AppCompatActivity() {
         }
     }
 
+
+    //not used
     private fun readData() {
         db=FirebaseDatabase.getInstance().getReference("USER")
         db.child(FirebaseAuth.getInstance().currentUser!!.uid).get().addOnSuccessListener{
@@ -107,7 +111,7 @@ class AddTrustyNumberActivity : AppCompatActivity() {
 //            Toast.makeText(this, "userTrustyNumber added successfully", Toast.LENGTH_SHORT).show()
 //        }
     }
-
+//not used
     private fun writeData() {
 
         database=Firebase.database.reference.child("USER")
