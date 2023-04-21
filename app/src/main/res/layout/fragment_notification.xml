@@ -10,14 +10,7 @@
     android:orientation="vertical"
     >
 
-<!--    <EditText-->
-<!--        android:id="@+id/enterDataEdit2"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="30dp"-->
-<!--        android:hint="Enter name"-->
-<!--        android:textSize="50dp"-->
-<!--   />-->
+
     <TextView
         android:id="@+id/dataReceiveEdit2"
         android:layout_width="wrap_content"
@@ -25,30 +18,6 @@
         android:layout_marginTop="30dp"
         android:text="No notification"
         android:textSize="50dp" />
-
-<!--    <androidx.appcompat.widget.AppCompatButton-->
-<!--        android:id="@+id/sendData2"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginHorizontal="16dp"-->
-<!--        android:layout_marginTop="30dp"-->
-<!--        android:background="@color/yellow"-->
-<!--        android:text="SendData"-->
-<!--        android:textColor="@color/black"-->
-<!--        android:textStyle="bold"-->
-<!--         />-->
-
-<!--    <androidx.appcompat.widget.AppCompatButton-->
-<!--        android:id="@+id/receiveData2"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginHorizontal="16dp"-->
-<!--        android:layout_marginTop="30dp"-->
-<!--        android:background="@color/yellow"-->
-<!--        android:text="ReceiveData"-->
-<!--        android:textColor="@color/black"-->
-<!--        android:textStyle="bold"-->
-<!--/>-->
 
 </LinearLayout>
 </FrameLayout>

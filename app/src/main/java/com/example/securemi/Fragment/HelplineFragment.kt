@@ -6,7 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.securemi.R
+import com.example.securemi.adapter.RvAdapterHelpline
+import com.example.securemi.dataClasses.ModalHelplinerRV
 import com.example.securemi.databinding.FragmentHelplineBinding
 import com.example.securemi.databinding.FragmentHomeBinding
 
@@ -22,51 +25,33 @@ private const val ARG_PARAM2 = "param2"
  */
 class HelplineFragment : Fragment() {
     private lateinit var binding: FragmentHelplineBinding
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        binding= FragmentHelplineBinding.inflate(layoutInflater)
-        binding.te.setOnClickListener {
-            Toast.makeText(requireContext(), "j", Toast.LENGTH_SHORT).show()
-        }
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var arrayList: ArrayList<ModalHelplinerRV>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding.te.setOnClickListener {
-            Toast.makeText(requireContext(), "j", Toast.LENGTH_SHORT).show()
-        }
+        binding= FragmentHelplineBinding.inflate(layoutInflater)
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_helpline, container, false)
+        arrayList= ArrayList()
+        arrayList.add(ModalHelplinerRV("108","Ambulance",R.drawable.ambulance))
+        arrayList.add(ModalHelplinerRV("102","Pregnancy Medic",R.drawable.woman))
+        arrayList.add(ModalHelplinerRV("101","Fire Service",R.drawable.firetruck))
+        arrayList.add(ModalHelplinerRV("100","Police",R.drawable.policeman))
+        arrayList.add(ModalHelplinerRV("1091","Woman Helpline",R.drawable.helplinegirl))
+        arrayList.add(ModalHelplinerRV("1098","Child Helpline",R.drawable.helpline2))
+        arrayList.add(ModalHelplinerRV("1073","Road Accident",R.drawable.accident))
+        arrayList.add(ModalHelplinerRV("182","Railway Protection",R.drawable.trainstation))
+        arrayList.add(ModalHelplinerRV("112","National helpline",R.drawable.helplinenational))
+
+
+        binding.rv.layoutManager= LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,false)
+        var rcvAdapter=RvAdapterHelpline(requireContext(),arrayList)
+        binding.rv.adapter=RvAdapterHelpline(requireContext(),arrayList)
+        return binding.root
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HelplineFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HelplineFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+
     }
 }

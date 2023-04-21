@@ -31,24 +31,28 @@ class NotificationFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentNotificationBinding.inflate(layoutInflater)
-                Toast.makeText(requireContext(), "started", Toast.LENGTH_SHORT).show()
-                db = FirebaseDatabase.getInstance().getReference("USER")
-                db.child(numb).child("NOTIFICATION").get().addOnSuccessListener {
-                    var notif = it.child("n2").value.toString()
-                    if(notif==null)
-                    {
-                        Toast.makeText(requireContext(), "you have no notification", Toast.LENGTH_SHORT).show()
-                    }
-                    else
-                    {
+               binding = FragmentNotificationBinding.inflate(layoutInflater)
+        try {
 
-                        binding.dataReceiveEdit2.text = notif
 
-                    }
-                    Toast.makeText(requireContext(), "ended", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "started", Toast.LENGTH_SHORT).show()
+            db = FirebaseDatabase.getInstance().getReference("USER")
+            db.child(numb).child("NOTIFICATION").get().addOnSuccessListener {
+                var notif = it.child("n2").value.toString()
+                if (notif == null) {
+                    Toast.makeText(requireContext(), "you have no notification", Toast.LENGTH_SHORT)
+                        .show()
+                } else {
+
+                    binding.dataReceiveEdit2.text = notif
+
                 }
-
+//                Toast.makeText(requireContext(), "ended", Toast.LENGTH_SHORT).show()
+            }
+        }catch (e:Exception)
+        {
+            Toast.makeText(requireContext(), "error unexpected", Toast.LENGTH_SHORT).show()
+        }
             // Inflate the layout for this fragment
             return binding.root
         }

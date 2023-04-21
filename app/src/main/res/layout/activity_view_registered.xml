@@ -19,13 +19,7 @@
             android:orientation="vertical">
 
 
-<!--            <TextView-->
-<!--                android:id="@+id/showNotification"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="30dp"-->
-<!--                android:text="No notification"-->
-<!--                android:textSize="50dp" />-->
+
 
             <TextView
                 android:id="@+id/num1show"
@@ -47,6 +41,7 @@
                 android:id="@+id/showNumb"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+
                 android:layout_marginTop="30dp"
                 android:text="Show Number" />
 

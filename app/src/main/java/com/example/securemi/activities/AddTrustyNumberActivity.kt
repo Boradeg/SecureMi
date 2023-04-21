@@ -84,7 +84,7 @@ class AddTrustyNumberActivity : AppCompatActivity() {
        // map.put(NOTIFICATION,notification)
         dbRef.collection(userUid).document().set(map).addOnSuccessListener {
             Toast.makeText(this, "success", Toast.LENGTH_SHORT).show()
-            binding.trustyNumber.text.clear()
+            binding.trustyNumber.text!!.clear()
             binding.trustyName.text.clear()
         }.addOnFailureListener {
             Toast.makeText(this, "failed", Toast.LENGTH_SHORT).show()

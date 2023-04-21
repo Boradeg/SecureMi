@@ -37,6 +37,11 @@ class ViewRegisteredActivity : AppCompatActivity() {
             }
 
         }
+
+            for (r in questionList) {
+                Toast.makeText(this, r.userNumber, Toast.LENGTH_SHORT).show()
+            }
+
        // binding.buttonLogout.setOnClickListener {
             //Firebase.auth.currentUser = null
             // startActivity(Intent(this,SignInActivity::class.java).putExtra("null","null"))
@@ -80,6 +85,7 @@ class ViewRegisteredActivity : AppCompatActivity() {
             binding.showNumb.text = questionList.get(0).userNumber.toString()
             binding.num2show.text = questionList.get(0).userName.toString()
             binding.num1show.text = questionList.get(0).userNumber.toString()
+
            // binding.showNotification.text= questionList.get(0).notification.toString()
         }
     }

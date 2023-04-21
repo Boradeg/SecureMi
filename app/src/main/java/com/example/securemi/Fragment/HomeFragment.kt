@@ -43,10 +43,10 @@ class HomeFragment : Fragment() {
         binding=FragmentHomeBinding.inflate(layoutInflater)
        // fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireContext())
         //getCurrentLocations()
-        binding.addTrustyNum.setOnClickListener {
+        binding.addFrBtn.setOnClickListener {
        startActivity(Intent(requireContext(),AddTrustyNumberActivity::class.java))
         }
-        binding.viewRegistred.setOnClickListener {
+        binding.viewfrBtn.setOnClickListener {
             startActivity(Intent(requireContext(),ViewRegisteredActivity::class.java))
         }
 
