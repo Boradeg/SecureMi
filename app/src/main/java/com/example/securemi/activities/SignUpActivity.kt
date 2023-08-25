@@ -10,8 +10,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-var emailMsg:String ?= null
-
+//var emailMsg:String ?= null
+var userEmail:String?=null
 
 
 class SignUpActivity : AppCompatActivity() {
@@ -26,14 +26,14 @@ class SignUpActivity : AppCompatActivity() {
         firebaseAuth=FirebaseAuth.getInstance()
         binding.textView.setOnClickListener {
             startActivity(Intent(this, SignInActivity::class.java))
+            finish()
         }
         binding.button.setOnClickListener {
              val email=binding.emailEt.text.toString()
+             userEmail=binding.emailEt.text.toString()
             val pass=binding.passET.text.toString()
             val confirmPass=binding.confirmPassEt.text.toString()
             numb=binding.numberET.text.toString()
-
-
             if(email.isNotEmpty() &&pass.isNotEmpty() &&confirmPass.isNotEmpty())
             {
                 if(pass==confirmPass)
@@ -50,10 +50,11 @@ class SignUpActivity : AppCompatActivity() {
                             .addOnSuccessListener {
                                 Toast.makeText(this, "crete user for app", Toast.LENGTH_SHORT)
                                     .show()
-                                emailMsg=binding.emailEt.text.toString()
+                              //  emailMsg=binding.emailEt.text.toString()
 
                             }
                             startActivity(Intent(this, MainActivity::class.java))
+                            finish()
 
                         }
                         else{

@@ -28,6 +28,15 @@
         <action
             android:id="@+id/action_homeFragment2_to_viewRegisteredActivity"
             app:destination="@id/viewRegisteredActivity" />
+        <action
+            android:id="@+id/action_homeFragment2_to_userFragment2"
+            app:destination="@id/userFragment" />
+        <action
+            android:id="@+id/action_homeFragment2_to_notificationFragment2"
+            app:destination="@id/notificationFragment" />
+        <action
+            android:id="@+id/action_homeFragment2_to_userFragment3"
+            app:destination="@id/userFragment" />
     </fragment>
     <fragment
         android:id="@+id/helplineFragment"
@@ -42,12 +51,28 @@
         <action
             android:id="@+id/action_notificationFragment_to_userFragment"
             app:destination="@id/userFragment" />
+        <action
+            android:id="@+id/action_notificationFragment_to_homeFragment2"
+            app:destination="@id/homeFragment2" />
     </fragment>
     <fragment
         android:id="@+id/userFragment"
         android:name="com.example.securemi.Fragment.UserFragment"
         android:label="fragment_user"
-        tools:layout="@layout/fragment_user" />
+        tools:layout="@layout/fragment_user" >
+        <action
+            android:id="@+id/action_userFragment_to_homeFragment2"
+            app:destination="@id/homeFragment2" />
+        <action
+            android:id="@+id/action_userFragment_to_helplineFragment"
+            app:destination="@id/helplineFragment" />
+        <action
+            android:id="@+id/action_userFragment_to_notificationFragment"
+            app:destination="@id/notificationFragment" />
+        <action
+            android:id="@+id/action_userFragment_to_homeFragment22"
+            app:destination="@id/homeFragment2" />
+    </fragment>
     <activity
         android:id="@+id/signInActivity"
         android:name="com.example.securemi.activities.SignInActivity"

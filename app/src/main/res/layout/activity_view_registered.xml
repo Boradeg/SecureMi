@@ -1,96 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".activities.ViewRegisteredActivity">
-    <ScrollView
+    <com.google.android.material.appbar.AppBarLayout
+
+        android:id="@+id/tb"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
-
-        <LinearLayout
+        android:layout_height="70dp"
+        android:gravity="center"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:orientation="vertical">
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
 
-
-
-
-            <TextView
-                android:id="@+id/num1show"
+            app:titleMarginStart="50dp"
+            app:titleTextColor="#DF1056" >
+            <ImageView
+                android:id="@+id/arrowBack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:text="Number1"
-                android:textSize="50dp" />
+                android:src="@drawable/leftar6"
 
+                />
             <TextView
-                android:id="@+id/num2show"
                 android:layout_width="wrap_content"
+                android:textColor="#C33535"
+               android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:layout_gravity="center"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:text="Number2"
-                android:textSize="50dp" />
+                android:text="WOMAN SEFETY"
+                />
+        </androidx.appcompat.widget.Toolbar>
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/showNumb"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
+    </com.google.android.material.appbar.AppBarLayout>
 
-                android:layout_marginTop="30dp"
-                android:text="Show Number" />
 
-<!--            <androidx.appcompat.widget.AppCompatButton-->
-<!--                android:id="@+id/buttonLogout"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginHorizontal="16dp"-->
-<!--                android:layout_marginTop="30dp"-->
-<!--                android:background="@color/yellow"-->
-<!--                android:text="Logout"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:textStyle="bold" />-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv"
+        android:layout_marginTop="70dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/rv_item_viewregistered"
+        />
 
-<!--            <EditText-->
-<!--                android:id="@+id/enterDataEdit"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="30dp"-->
-<!--                android:hint="Enter name"-->
-<!--                android:textSize="50dp" />-->
-<!--            <TextView-->
-<!--                android:id="@+id/dataReceiveEdit"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="30dp"-->
-<!--                android:text="No notification"-->
-<!--                android:textSize="50dp" />-->
-<!--            <androidx.appcompat.widget.AppCompatButton-->
-<!--                android:id="@+id/sendData"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginHorizontal="16dp"-->
-<!--                android:layout_marginTop="30dp"-->
-<!--                android:background="@color/yellow"-->
-<!--                android:text="SendData"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:textStyle="bold" />-->
-<!--            <androidx.appcompat.widget.AppCompatButton-->
-<!--                android:id="@+id/receiveData"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginHorizontal="16dp"-->
-<!--                android:layout_marginTop="30dp"-->
-<!--                android:background="@color/yellow"-->
-<!--                android:text="ReceiveData"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:textStyle="bold" />-->
-        </LinearLayout>
-
-    </ScrollView>
-</LinearLayout>
+</RelativeLayout>

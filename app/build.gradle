@@ -67,6 +67,9 @@ dependencies {
 
     //countryCode
     implementation 'com.hbb20:ccp:2.7.0'
+    //lottie
+    implementation("com.airbnb.android:lottie:6.1.0")
+    //
 
 
 }

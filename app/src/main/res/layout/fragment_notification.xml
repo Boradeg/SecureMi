@@ -4,20 +4,68 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragment.NotificationFragment">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
+    <androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:id="@+id/viewLocation"
+        android:layout_height="100dp"
+        android:backgroundTint="#DBE8E8"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="20dp"
+
+        app:cardElevation="6dp">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+                <TextView
+                    android:id="@+id/EM_no"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Gokul Borade"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    />
+                <TextView
+                    android:id="@+id/EM_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Help Me!"
+                    android:textStyle="italic"
+                    android:textSize="20dp"
+                    />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:id="@+id/viewLocation2"
+        android:layout_height="100dp"
+        android:backgroundTint="#DBE8E8"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="20dp"
+
+        app:cardElevation="6dp">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            >
+            <TextView
+                android:id="@+id/EM_no2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="You Have No Notification"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                />
 
 
-    <TextView
-        android:id="@+id/dataReceiveEdit2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="No notification"
-        android:textSize="50dp" />
-
-</LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 </FrameLayout>

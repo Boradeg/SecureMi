@@ -21,6 +21,7 @@ class SignInActivity : AppCompatActivity() {
         firebaseAuth= FirebaseAuth.getInstance()
         binding.textView.setOnClickListener {
              startActivity(Intent(this, SignUpActivity::class.java))
+            finish()
 
         }
         binding.button.setOnClickListener {
@@ -34,6 +35,7 @@ class SignInActivity : AppCompatActivity() {
                     {
 
                         startActivity(Intent(this, MainActivity::class.java))
+                        finish()
 
                     }
                     else{
@@ -50,13 +52,7 @@ class SignInActivity : AppCompatActivity() {
 
             }
         }
-    }  override fun onStart() {
-    //   intent.getStringExtra("null")
-        super.onStart()
-        if (Firebase.auth.currentUser != null) {
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
-        }
     }
+
 
 }

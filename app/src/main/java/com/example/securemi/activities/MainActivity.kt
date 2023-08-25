@@ -2,12 +2,10 @@ package com.example.securemi.activities
 
 import android.Manifest
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationManager
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
@@ -15,31 +13,24 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.PopupMenu
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
-import androidx.navigation.NavController
-import androidx.navigation.NavDestination
 import androidx.navigation.fragment.findNavController
 import com.example.securemi.R
 import com.example.securemi.dataClasses.UserTrustyDetailDataClass
 import com.example.securemi.databinding.ActivityMainBinding
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-
+//
 var longitudes=""
 var latitudes=""
-var id=""
+//var id=""
 var userUid:String=""
 var message:String = ""
-
-var questionList = ArrayList<UserTrustyDetailDataClass>()
+//var questionList = ArrayList<UserTrustyDetailDataClass>()
 class MainActivity : AppCompatActivity() {
     private lateinit var db: DatabaseReference
-
     private lateinit var binding:ActivityMainBinding
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,21 +38,16 @@ class MainActivity : AppCompatActivity() {
         binding=ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //get num user
-        //get user email
-        getUSerUid()
-
+        getUSerUid()   //for get number
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
-        permissionAccess()
         getCurrentLocations()
-
+        //permissionAccess()    //for sms permission
 
         val navHostFragment=supportFragmentManager.findFragmentById(R.id.fragmentContainer)
         val navController=navHostFragment!!.findNavController()
         val popupMenu= PopupMenu(this,null)
         popupMenu.inflate(R.menu.bottomnavbarmenu)
         binding.bottomBar.setupWithNavController(popupMenu.menu,navController)
-
     }
 
     private fun readNotification() {
@@ -101,6 +87,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun getCurrentLocations()
     {
+        Toast.makeText(this, "getCurrentLocation started", Toast.LENGTH_SHORT).show()
         if(checkPermissions())
         {
             if(locationEnableds())
@@ -114,14 +101,7 @@ class MainActivity : AppCompatActivity() {
                         Manifest.permission.ACCESS_COARSE_LOCATION
                     ) != PackageManager.PERMISSION_GRANTED
                 ) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
-                    return
+
                 }
                 fusedLocationProviderClient.lastLocation.addOnCompleteListener(this) { task->
                     val location: Location?=task.result
@@ -133,7 +113,7 @@ class MainActivity : AppCompatActivity() {
                         Toast.makeText(this, "success location", Toast.LENGTH_SHORT).show()
                         longitudes= location.longitude.toString()
                        latitudes= location.latitude.toString()
-                        message= "Plz Help Me.location: https://maps.google.com/?q=$latitudes,$longitudes"
+                        message= "https://maps.google.com/?q=$latitudes,$longitudes"
 
                     }
 
@@ -204,18 +184,15 @@ class MainActivity : AppCompatActivity() {
             LocationManager.NETWORK_PROVIDER)
     }
     private fun permissionAccess() {
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED)
         {
-            if(ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED)
-            {
 
-                Toast.makeText(this, "permission granted for msg send", Toast.LENGTH_SHORT).show()
-            }
-            else
-            {
+            Toast.makeText(this, "permission granted for msg send", Toast.LENGTH_SHORT).show()
+        }
+        else
+        {
 
-                ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.SEND_SMS),101)
-            }
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.SEND_SMS),101)
         }
     }
 }

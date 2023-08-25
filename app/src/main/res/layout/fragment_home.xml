@@ -138,12 +138,40 @@
 
     </LinearLayout>
 
-    <ImageView
+    <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/sos"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:src="@drawable/sos" />
+       app:lottie_rawRes="@raw/greensos"
+        android:layout_marginTop="70dp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        tools:ignore="MissingConstraints"
+
+        />
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/sos2"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        app:lottie_rawRes="@raw/redsos"
+        android:layout_marginTop="70dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        tools:ignore="MissingConstraints"
+
+        />
+
 </RelativeLayout>
 </FrameLayout>
