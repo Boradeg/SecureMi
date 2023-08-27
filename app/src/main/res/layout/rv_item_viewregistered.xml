@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:backgroundTint="#F0F0F1"
+    android:layout_margin="10dp"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="6dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_margin="5dp"
+        android:padding="5dp">
+        <ImageView
+            android:id="@+id/EM_icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/mann"
+            android:layout_centerVertical="true"
+
+
+            />
+        <LinearLayout
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="20dp"
+            android:layout_toRightOf="@id/EM_icon"
+            android:layout_centerVertical="true"
+            >
+
+
+            <TextView
+                android:id="@+id/EM_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="9845686102"
+                android:textStyle="bold"
+                android:textSize="20dp"
+
+
+
+                />
+            <TextView
+                android:id="@+id/EM_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Vishal Deore"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            >
+
+
+        <ImageView
+            android:id="@+id/editContact"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="10dp"
+            android:src="@drawable/edit"
+            android:layout_centerVertical="true"
+ />
+        <ImageView
+
+            android:id="@+id/deleteContact"
+            android:layout_width="30dp"
+            android:layout_margin="10dp"
+            android:layout_height="30dp"
+            android:src="@drawable/delete"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            />
+
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
