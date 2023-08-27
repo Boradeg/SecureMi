@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import com.example.securemi.R
 import com.example.securemi.activities.SignInActivity
 import com.example.securemi.databinding.FragmentUserBinding
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.google.firebase.auth.FirebaseAuth
 
 // TODO: Rename parameter arguments, choose names that match
@@ -22,6 +24,7 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class UserFragment : Fragment() {
+    private lateinit var fusedLocationProviderClients: FusedLocationProviderClient
  lateinit var binding: FragmentUserBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,7 +32,10 @@ class UserFragment : Fragment() {
     ): View? {
             binding=FragmentUserBinding.inflate(layoutInflater)
              return binding.root
+
     }
+
+
 
 
 }

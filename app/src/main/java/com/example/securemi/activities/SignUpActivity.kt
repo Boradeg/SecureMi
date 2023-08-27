@@ -3,6 +3,7 @@ package com.example.securemi.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.Settings
 import android.widget.Toast
 import com.example.securemi.dataClasses.UserDataSignUp
 import com.example.securemi.databinding.ActivitySignUpBinding
@@ -11,10 +12,11 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 //var emailMsg:String ?= null
-var userEmail:String?=null
+
 
 
 class SignUpActivity : AppCompatActivity() {
+    var userEmail:String?=null
     lateinit var binding:ActivitySignUpBinding
     private lateinit var firebaseAuth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,6 +30,7 @@ class SignUpActivity : AppCompatActivity() {
             startActivity(Intent(this, SignInActivity::class.java))
             finish()
         }
+        startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
         binding.button.setOnClickListener {
              val email=binding.emailEt.text.toString()
              userEmail=binding.emailEt.text.toString()

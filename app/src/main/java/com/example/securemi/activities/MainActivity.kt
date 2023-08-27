@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding=ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        Toast.makeText(this, "Main Activity", Toast.LENGTH_SHORT).show()
         getUSerUid()   //for get number
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
         getCurrentLocations()
@@ -108,11 +108,14 @@ class MainActivity : AppCompatActivity() {
                     if(location==null)
                     {
                         Toast.makeText(this, "null location", Toast.LENGTH_SHORT).show()
+
+                        //startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
                     }
                     else{
                         Toast.makeText(this, "success location", Toast.LENGTH_SHORT).show()
                         longitudes= location.longitude.toString()
-                       latitudes= location.latitude.toString()
+                        Toast.makeText(this, location.latitude.toString(), Toast.LENGTH_SHORT).show()
+                        latitudes= location.latitude.toString()
                         message= "https://maps.google.com/?q=$latitudes,$longitudes"
 
                     }
@@ -183,16 +186,6 @@ class MainActivity : AppCompatActivity() {
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)||locationManager.isProviderEnabled(
             LocationManager.NETWORK_PROVIDER)
     }
-    private fun permissionAccess() {
-        if(ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED)
-        {
 
-            Toast.makeText(this, "permission granted for msg send", Toast.LENGTH_SHORT).show()
-        }
-        else
-        {
 
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.SEND_SMS),101)
-        }
-    }
 }

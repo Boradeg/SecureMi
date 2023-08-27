@@ -23,11 +23,9 @@ class NotificationFragment : Fragment() {
 
         binding = FragmentNotificationBinding.inflate(layoutInflater)
         try {
-            Toast.makeText(requireContext(), "started", Toast.LENGTH_SHORT).show()
             db = FirebaseDatabase.getInstance().getReference("USER")
             db.child(numb).child("NOTIFICATION").get().addOnSuccessListener {
                 val notif = it.child("n2").child("userNumber").value.toString()
-
                 binding.EMNo.text = it.child("n2").child("userName").value.toString()
                 if (notif === "null") {
                     binding.viewLocation.visibility = View.GONE
@@ -35,17 +33,16 @@ class NotificationFragment : Fragment() {
                 } else {
                     binding.viewLocation.visibility = View.VISIBLE
                     binding.viewLocation2.visibility = View.GONE
-                    Toast.makeText(requireContext(), "not null", Toast.LENGTH_SHORT).show()
                 }
             }
         } catch (e: Exception) {
             Toast.makeText(requireContext(), "error unexpected", Toast.LENGTH_SHORT).show()
         }
-        // Inflate the layout for this fragment
         binding.viewLocation.setOnClickListener {
             startActivity(Intent(requireContext(), locationActivity::class.java))
         }
+
             return binding.root
-        }
+    }
 
 }

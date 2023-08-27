@@ -1,21 +1,31 @@
 package com.example.securemi.Fragment
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Context.LOCATION_SERVICE
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.hardware.camera2.CameraCaptureSession
+import android.hardware.camera2.CameraDevice
+import android.hardware.camera2.CameraManager
+import android.hardware.camera2.CaptureRequest
 import android.location.Location
 import android.location.LocationManager
+import android.media.ImageReader
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.HandlerThread
 import android.provider.Settings
 import android.telephony.SmsManager
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.TextureView
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -38,58 +48,72 @@ class HomeFragment : Fragment() {
     var sendSmsArrayLis = ArrayList<UserTrustyDetailDataClass>()
     private lateinit var database: DatabaseReference
     val notification="notification send"
+    @SuppressLint("UnlocalizedSms")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-           // permissionAccess()
-
         binding = FragmentHomeBinding.inflate(layoutInflater)
-        // fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireContext())
-        //getCurrentLocations()
+        startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
+        Toast.makeText(requireContext(), "Home Activity", Toast.LENGTH_SHORT).show()
+
         binding.addFrBtn.setOnClickListener {
             startActivity(Intent(requireContext(), AddTrustyNumberActivity::class.java))
         }
         binding.viewfrBtn.setOnClickListener {
+            for (num in sendSmsArrayLis) {
+                Toast.makeText(requireContext(), num.userNumber, Toast.LENGTH_SHORT).show()
+            }
             startActivity(Intent(requireContext(), ViewRegisteredActivity::class.java))
         }
-            var flag=false
-       binding.sos.setOnClickListener {
-            flag = flag != true
-           //binding.sos.playAnimation()
-            if (!flag) {
-                binding.sos.visibility = View.GONE
-                binding.sos2.visibility=View.VISIBLE
-               // binding.sos2.playAnimation()
-//                binding.sos.loop(true)
-                try {
-                    permissionAccess2()
-                   // permissionAccess()
-                   // getDataFromFirestore()
-                    sendSms()
+        //permissionAccess2()
+        //var flag=false
+        binding.sos.setOnClickListener {
+            try {
 
-                } catch (e: Exception) { Toast.makeText(requireContext(), e.toString(), Toast.LENGTH_SHORT).show() }
+                startActivity(Intent(requireContext(),MainActivity::class.java))
+                permissionAccess2()
+            }catch (e:Exception)
+            {
+                Toast.makeText(requireContext(), e.toString(), Toast.LENGTH_SHORT).show()
             }
-            //sos end
-            else{
-               // binding.sos.loop(false)
-                binding.sos.visibility = View.VISIBLE
-                binding.sos2.visibility=View.GONE
+            try {
+                val smsManager = SmsManager.getDefault() as SmsManager
+                smsManager.sendTextMessage("87654", null, longitudes.toString(), null, null)
+                Toast.makeText(requireContext(), longitudes.toString(), Toast.LENGTH_SHORT).show()
+               //  sendSms()
+
+            }catch (e:Exception)
+            {
+                Toast.makeText(requireContext(), e.toString(), Toast.LENGTH_SHORT).show()
             }
+//           val smsManager = SmsManager.getDefault() as SmsManager
+//           Toast.makeText(requireContext(), message.toString(), Toast.LENGTH_SHORT).show()
+
+            // smsManager.sendTextMessage("4444", null, message.toString(), null, null)
+//           getDataFromFirestore()
+//            flag = flag != true
+//            if (!flag) {
+//                binding.sos.visibility = View.GONE
+//                binding.sos2.visibility=View.VISIBLE
+//                try {
+//                    permissionAccess2()
+//                    sendSms()
+//                } catch (e: Exception) { Toast.makeText(requireContext(), e.toString(), Toast.LENGTH_SHORT).show() }
+//            }
+//            else{
+//                binding.sos.visibility = View.VISIBLE
+//                binding.sos2.visibility=View.GONE
+//            }
         }
 
-        // Inflate the layout for this fragment
         return binding.root
-
     }
-
+    @SuppressLint("UnlocalizedSms")
     private fun sendSms() {
         try {
-            var smsManager = SmsManager.getDefault() as SmsManager
-            getDataFromFirestore()
-            //   Toast.makeText(requireContext(), questionList[0].userNumber.toString(), Toast.LENGTH_SHORT).show()
-            var num=0
+            val smsManager = SmsManager.getDefault() as SmsManager
+             getDataFromFirestore()
             for (num in sendSmsArrayLis) {
                 smsManager.sendTextMessage(num.userNumber.toString(), null, message.toString(), null, null)
             }
@@ -98,7 +122,18 @@ class HomeFragment : Fragment() {
             Toast.makeText(requireContext(), e.toString(), Toast.LENGTH_SHORT).show()
         }
     }
+    private fun permissionAccessFormsg() {
+        if(ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED)
+        {
 
+            Toast.makeText(requireContext(), "permission granted for msg send", Toast.LENGTH_SHORT).show()
+        }
+        else
+        {
+
+            ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.SEND_SMS),101)
+        }
+    }
     private fun permissionAccess2() {
 
         if (ContextCompat.checkSelfPermission(
@@ -122,43 +157,32 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun permissionAccess() {
-        if(ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED)
-        {
 
-            Toast.makeText(requireContext(), "permission granted for msg send", Toast.LENGTH_SHORT).show()
-        }
-        else
-        {
-            ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.SEND_SMS),101)
-        }
-    }
+    @SuppressLint("SuspiciousIndentation")
     private fun getDataFromFirestore() {
-        Firebase.firestore.collection(userEmail!!).get().addOnSuccessListener { result ->
-            var temp = ArrayList<UserTrustyDetailDataClass>()
-            temp.clear()
-            sendSmsArrayLis.clear()
-            for (res in result.documents) {
+        Firebase.firestore.collection(FirebaseAuth.getInstance().currentUser!!.email.toString())
+            .get().addOnSuccessListener { result ->
+                var temp = ArrayList<UserTrustyDetailDataClass>()
+                val smsManager = SmsManager.getDefault() as SmsManager
+                for (res in result.documents) {
+                    var question: UserTrustyDetailDataClass? =
+                        res.toObject(UserTrustyDetailDataClass::class.java)//que come from databese 1 by 1
+                    temp.add(question!!)
+                    smsManager.sendTextMessage(question.userNumber, null, message.toString(), null, null)
+                    // Toast.makeText(requireContext(), message.toString(), Toast.LENGTH_SHORT).show()
+                }
+//            val smsManager = SmsManager.getDefault() as SmsManager
+//            smsManager.sendTextMessage(temp[0].userNumber, null, message.toString(), null, null)
+                sendSmsArrayLis.addAll(temp)
 
-                var question: UserTrustyDetailDataClass? = res.toObject(UserTrustyDetailDataClass::class.java)//que come from databese 1 by 1
-                temp.add(question!!)
-              //  Toast.makeText(requireContext(),res.toString(), Toast.LENGTH_SHORT).show()
-
+//            var data = UserTrustyDetailDataClass("$numb","$message")
+//                Firebase.database.reference.child("USER")
+//                    .child(sendSmsArrayLis[0].userNumber.toString()).child("NOTIFICATION")
+//                    .child("n2")
+//                    .setValue(data)
+//                    .addOnSuccessListener { Toast.makeText(requireContext(), "notification node created", Toast.LENGTH_SHORT).show()
+//                    }
+                // }
             }
-            sendSmsArrayLis.addAll(temp)
-
-            var data = UserTrustyDetailDataClass("$numb","$message")
-//            for(i in sendSmsArrayLis) {
-
-             //  var k=0
-                Firebase.database.reference.child("USER")
-                    .child(sendSmsArrayLis[0].userNumber.toString()).child("NOTIFICATION")
-                    .child("n2")
-                    .setValue(data)
-                    .addOnSuccessListener { Toast.makeText(requireContext(), "notification node created", Toast.LENGTH_SHORT).show()
-                    }
-               // k++;
-//            }
-        }
     }
 }

@@ -3,6 +3,7 @@ package com.example.securemi.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.Settings
 import android.widget.Toast
 import com.example.securemi.databinding.ActivitySignInBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -18,6 +19,7 @@ class SignInActivity : AppCompatActivity() {
         setContentView(binding.root)
         actionBar?.hide()
         supportActionBar?.hide()
+        startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
         firebaseAuth= FirebaseAuth.getInstance()
         binding.textView.setOnClickListener {
              startActivity(Intent(this, SignUpActivity::class.java))
