@@ -6,4 +6,10 @@
     and SHIELD has sent this SOS to you because you are in their Emergency Contacts.
     Please call them immediately.</string>
     <string name="add_trusty_number">Add Trusty Number</string>
+    <string name="you_have_no_message">You have no message</string>
+    <string name="please_help_me_quickly_i_m_in_danger">Please help me quickly...I\'m in danger</string>
+    <string name="add_friend">Add Friend</string>
+    <string name="enter_friend_name">Enter Friend Name</string>
+    <string name="todo">TODO</string>
+    <string name="contrycodewomanimage">ContryCodeWomanImage</string>
 </resources>

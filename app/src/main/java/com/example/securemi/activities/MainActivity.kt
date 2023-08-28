@@ -1,6 +1,7 @@
 package com.example.securemi.activities
 
 import android.Manifest
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -37,12 +38,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding=ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        Toast.makeText(this, "Main Activity", Toast.LENGTH_SHORT).show()
+        startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
         getUSerUid()   //for get number
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
         getCurrentLocations()
-        //permissionAccess()    //for sms permission
-
+permissionAccess2()
         val navHostFragment=supportFragmentManager.findFragmentById(R.id.fragmentContainer)
         val navController=navHostFragment!!.findNavController()
         val popupMenu= PopupMenu(this,null)
@@ -74,10 +74,8 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.notif -> {
-                Toast.makeText(this, "notif/....", Toast.LENGTH_SHORT).show()
             }
             R.id.hom -> {
-                Toast.makeText(this, "ho/....", Toast.LENGTH_SHORT).show()
 
 
             }
@@ -87,7 +85,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun getCurrentLocations()
     {
-        Toast.makeText(this, "getCurrentLocation started", Toast.LENGTH_SHORT).show()
         if(checkPermissions())
         {
             if(locationEnableds())
@@ -108,15 +105,13 @@ class MainActivity : AppCompatActivity() {
                     if(location==null)
                     {
                         Toast.makeText(this, "null location", Toast.LENGTH_SHORT).show()
-
-                        //startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
                     }
                     else{
                         Toast.makeText(this, "success location", Toast.LENGTH_SHORT).show()
                         longitudes= location.longitude.toString()
                         Toast.makeText(this, location.latitude.toString(), Toast.LENGTH_SHORT).show()
                         latitudes= location.latitude.toString()
-                        message= "https://maps.google.com/?q=$latitudes,$longitudes"
+                        message= "HELP ME !! IT's AN EMERGENCY!!\n\nPlease reach ASAP to the location below\n\nhttps://maps.google.com/?q=$latitudes,$longitudes"
 
                     }
 
@@ -125,7 +120,6 @@ class MainActivity : AppCompatActivity() {
             else
             {
                 //setting open here
-                Toast.makeText(this, "turn on location", Toast.LENGTH_SHORT).show()
                 startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
             }
         }
@@ -169,20 +163,33 @@ class MainActivity : AppCompatActivity() {
         {
             if(grantResults.isNotEmpty()&&grantResults[0]== PackageManager.PERMISSION_GRANTED)
             {
-                Toast.makeText(this, "permission granted", Toast.LENGTH_SHORT).show()
                 getCurrentLocations()
             }
             else
             {
-                Toast.makeText(this, "permission denied", Toast.LENGTH_SHORT).show()
 
             }
+        }
+    }
+    private fun permissionAccess2() {
+
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.SEND_SMS
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+
+        } else {
+
+            ActivityCompat.requestPermissions(
+                this as Activity,
+                arrayOf(Manifest.permission.SEND_SMS),
+                101
+            )
         }
     }
 
     private fun locationEnableds(): Boolean {
         val locationManager: LocationManager =getSystemService(Context.LOCATION_SERVICE)as LocationManager
-        // val locationManager:LocationManager=getSystemService(LOCATION_SERVICE)as LocationManager
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)||locationManager.isProviderEnabled(
             LocationManager.NETWORK_PROVIDER)
     }

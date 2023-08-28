@@ -9,13 +9,19 @@ import com.example.securemi.dataClasses.UserDataSignUp
 import com.example.securemi.databinding.ActivitySignUpBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 //var emailMsg:String ?= null
-
+val myNumber:String?=null
 
 
 class SignUpActivity : AppCompatActivity() {
+    lateinit  var dbRef:FirebaseFirestore
+    private lateinit var database : DatabaseReference
     var userEmail:String?=null
     lateinit var binding:ActivitySignUpBinding
     private lateinit var firebaseAuth: FirebaseAuth
@@ -30,7 +36,9 @@ class SignUpActivity : AppCompatActivity() {
             startActivity(Intent(this, SignInActivity::class.java))
             finish()
         }
-        startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
+        try{
+
+
         binding.button.setOnClickListener {
              val email=binding.emailEt.text.toString()
              userEmail=binding.emailEt.text.toString()
@@ -44,18 +52,28 @@ class SignUpActivity : AppCompatActivity() {
                     binding.emailEt.text.toString()
                     ,binding.numberET.text.toString()
                 )
+                    database=FirebaseDatabase.getInstance().getReference()
                     firebaseAuth.createUserWithEmailAndPassword(email,pass).addOnCompleteListener {
                         if(it.isSuccessful)
-                        {     Firebase.database.reference.child("USER")
-                            .child(numb)
-                           // .child(FirebaseAuth.getInstance().currentUser!!.uid)
-                            .setValue(userDataSignUp)
-                            .addOnSuccessListener {
-                                Toast.makeText(this, "crete user for app", Toast.LENGTH_SHORT)
-                                    .show()
-                              //  emailMsg=binding.emailEt.text.toString()
-
+                        {
+                            // write userDetail with number node
+                            database = FirebaseDatabase.getInstance().getReference("Users")
+                            val User = UserDataSignUp(  binding.emailEt.text.toString()
+                                ,binding.numberET.text.toString())
+                            database.child(numb).setValue(User).addOnSuccessListener {
+                                Toast.makeText(this,"Successfully Saved",Toast.LENGTH_SHORT).show()
+                            }.addOnFailureListener{
+                                Toast.makeText(this,"Failed",Toast.LENGTH_SHORT).show()
                             }
+                           // write userDetail with uid node
+                            database = FirebaseDatabase.getInstance().getReference("Users2")
+                            val User2 = UserDataSignUp(binding.emailEt.text.toString(),binding.numberET.text.toString())
+                            database.child(FirebaseAuth.getInstance().currentUser!!.uid).setValue(User).addOnSuccessListener {
+                                Toast.makeText(this,"Successfully Saved",Toast.LENGTH_SHORT).show()
+                            }.addOnFailureListener{
+                                Toast.makeText(this,"Failed",Toast.LENGTH_SHORT).show()
+                            }
+
                             startActivity(Intent(this, MainActivity::class.java))
                             finish()
 
@@ -75,6 +93,10 @@ class SignUpActivity : AppCompatActivity() {
 
             }
         }
-    }
+
+    }catch (e:Exception){
+            Toast.makeText(this, "exc", Toast.LENGTH_SHORT).show()
+
+        }    }
 
 }

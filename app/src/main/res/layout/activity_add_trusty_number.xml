@@ -45,15 +45,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:ignore="UseCompoundDrawables">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:text="Add Friend"
+            android:text="@string/add_friend"
             android:textColor="#302A2A"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <ImageView
@@ -61,7 +62,8 @@
             android:layout_height="100dp"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
-            android:src="@drawable/team" />
+            android:src="@drawable/team"
+            android:contentDescription="@string/todo" />
 
 
 
@@ -90,7 +92,8 @@
                 android:layout_height="40dp"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:src="@drawable/woman3" />
+                android:src="@drawable/woman3"
+                android:contentDescription="@string/contrycodewomanimage" />
         </LinearLayout>
         <EditText
             android:id="@+id/trustyName"
@@ -99,7 +102,8 @@
             android:layout_marginStart="30dp"
             android:background="@drawable/border"
             android:textAlignment="center"
-            android:hint="  Enter Friend Name" />
+            android:hint="@string/enter_friend_name"
+            android:autofillHints="" />
 
 
     </LinearLayout>

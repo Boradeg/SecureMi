@@ -1,71 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment.NotificationFragment">
-    <androidx.cardview.widget.CardView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:id="@+id/viewLocation"
-        android:layout_height="100dp"
-        android:backgroundTint="#DBE8E8"
-        android:layout_margin="10dp"
-        app:cardCornerRadius="20dp"
 
-        app:cardElevation="6dp">
-        <LinearLayout
+    tools:context=".activities.splashScreen">
+
+    <androidx.cardview.widget.CardView
+
+
+        android:id="@+id/cardview"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_margin="10dp"
+        android:visibility="gone"
+        android:layout_marginTop="80dp"
+        android:backgroundTint="#EAECED"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="5dp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="10dp">
+
+
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
-                <TextView
-                    android:id="@+id/EM_no"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Gokul Borade"
-                    android:textStyle="bold"
-                    android:textSize="20dp"
-                    />
-                <TextView
-                    android:id="@+id/EM_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Help Me!"
-                    android:textStyle="italic"
-                    android:textSize="20dp"
-                    />
+            android:layout_margin="5dp"
+            android:layout_marginTop="80dp">
 
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-    <androidx.cardview.widget.CardView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:id="@+id/viewLocation2"
-        android:layout_height="100dp"
-        android:backgroundTint="#DBE8E8"
-        android:layout_margin="10dp"
-        app:cardCornerRadius="20dp"
+            <ImageView
+                android:id="@+id/EM_icon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/sos" />
 
-        app:cardElevation="6dp">
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="center"
-            >
-            <TextView
-                android:id="@+id/EM_no2"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="You Have No Notification"
-                android:textStyle="bold"
-                android:textSize="20dp"
-                />
+                android:layout_centerVertical="true"
+                android:layout_marginStart="20dp"
+                android:layout_toRightOf="@id/EM_icon"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/senderEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:text="Kiran Shinde"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/displayMsg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/please_help_me_quickly_i_m_in_danger"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:textStyle="italic"
+
+                    />
+            </LinearLayout>
 
 
-        </LinearLayout>
+        </RelativeLayout>
     </androidx.cardview.widget.CardView>
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+

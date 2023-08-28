@@ -21,7 +21,6 @@ class splashScreen : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-
         if (Firebase.auth.currentUser != null) {
             startActivity(Intent(this,MainActivity::class.java))
             finish()

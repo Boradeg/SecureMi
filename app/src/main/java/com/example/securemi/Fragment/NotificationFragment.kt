@@ -1,5 +1,6 @@
 package com.example.securemi.Fragment
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,39 +11,57 @@ import android.widget.Toast
 import com.example.securemi.activities.locationActivity
 import com.example.securemi.activities.numb
 import com.example.securemi.databinding.FragmentNotificationBinding
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
 class NotificationFragment : Fragment() {
     private lateinit var binding: FragmentNotificationBinding
     private lateinit var db: DatabaseReference
+    var msg:String=""
+
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         binding = FragmentNotificationBinding.inflate(layoutInflater)
-        try {
-            db = FirebaseDatabase.getInstance().getReference("USER")
-            db.child(numb).child("NOTIFICATION").get().addOnSuccessListener {
-                val notif = it.child("n2").child("userNumber").value.toString()
-                binding.EMNo.text = it.child("n2").child("userName").value.toString()
-                if (notif === "null") {
-                    binding.viewLocation.visibility = View.GONE
-                    binding.viewLocation2.visibility = View.VISIBLE
-                } else {
-                    binding.viewLocation.visibility = View.VISIBLE
-                    binding.viewLocation2.visibility = View.GONE
-                }
-            }
-        } catch (e: Exception) {
-            Toast.makeText(requireContext(), "error unexpected", Toast.LENGTH_SHORT).show()
-        }
-        binding.viewLocation.setOnClickListener {
-            startActivity(Intent(requireContext(), locationActivity::class.java))
+       // binding.layoutAlert.visibility=View.GONE
+        getSenderMsg()
+        binding.cardview.setOnClickListener {
+            var intent=Intent(requireContext(), locationActivity::class.java).putExtra("1","msg")
+            startActivity(intent)
         }
 
-            return binding.root
+        return binding.root
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun getSenderMsg() {
+        Toast.makeText(requireContext(), "numb is $numb", Toast.LENGTH_SHORT).show()
+        db = FirebaseDatabase.getInstance().getReference("Users2")
+        db.child(FirebaseAuth.getInstance().currentUser!!.uid).get().addOnSuccessListener {
+            numb = it.child("numb").value.toString()
+            Toast.makeText(requireContext(), it.child("numb").value.toString(), Toast.LENGTH_SHORT)
+                .show()
+        }
+        Toast.makeText(requireContext(), numb.toString(), Toast.LENGTH_SHORT).show()
+        db = FirebaseDatabase.getInstance().getReference("Users")
+        db.child(numb.toString()).child("NOTIFICATION").get().addOnSuccessListener {
+            Toast.makeText(requireContext(), "enter", Toast.LENGTH_SHORT).show()
+            binding.senderEmail.text = it.child("n2").child("userEmail").value.toString()
+           // binding.showSenderMsg.text = "message :" + it.child("n2").child("UserLocation").value.toString()
+            var ltd = "message :" + it.child("n2").child("Latitudes").value.toString()
+            var longi = "message :" + it.child("n2").child("Longitude").value.toString()
+            msg="https://maps.google.com/?q=$longi,$ltd"
+
+            binding.cardview.visibility=View.VISIBLE
+            if(binding.senderEmail.text==null)
+            {
+                binding.cardview.visibility=View.GONE
+            }
+           // binding.showSenderLocation.text = "https://maps.google.com/?q=$longi,$ltd"
+        }
     }
 
 }

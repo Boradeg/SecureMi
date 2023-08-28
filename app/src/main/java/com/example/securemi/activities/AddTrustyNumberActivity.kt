@@ -2,31 +2,26 @@ package com.example.securemi.activities
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-
 import android.content.pm.PackageManager
-import android.graphics.BitmapFactory
 import android.graphics.Color
+import android.media.RingtoneManager
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.RemoteViews
-
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-
 import com.example.securemi.R
 import com.example.securemi.databinding.ActivityAddTrustyNumberBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
-
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -39,10 +34,7 @@ const val channelId ="channelId"
 class AddTrustyNumberActivity : AppCompatActivity() {
 
     lateinit var notificationManager: NotificationManager
-//    lateinit var notificationChannel: NotificationChannel
-    //lateinit var builder: Notification.Builder
-//    private val channelId = "i.apps.notifications"
-//    private val description = "Test notification"
+
     private lateinit var database: DatabaseReference
     private lateinit var db: DatabaseReference
     lateinit  var dbRef:FirebaseFirestore
@@ -81,6 +73,11 @@ class AddTrustyNumberActivity : AppCompatActivity() {
             }
         }
         binding.saveBtn.setOnClickListener {
+//            val notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE)
+//            val r = Rington
+//            eManager.getRingtone(applicationContext, notification)
+//            r.play()
+
             if(binding.trustyNumber.text.isNotEmpty()&&binding.trustyName.text.isNotEmpty())
             {
                try {
@@ -128,11 +125,9 @@ class AddTrustyNumberActivity : AppCompatActivity() {
         map.put(NUMBER,number)
         dbRef.collection(FirebaseAuth.getInstance().currentUser!!.email!!).document()
             .set(map).addOnSuccessListener {
-            Toast.makeText(this, "success", Toast.LENGTH_SHORT).show()
             binding.trustyNumber.text!!.clear()
             binding.trustyName.text.clear()
         }.addOnFailureListener {
-            Toast.makeText(this, "failed", Toast.LENGTH_SHORT).show()
         }
     }
 
