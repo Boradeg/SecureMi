@@ -7,13 +7,13 @@ plugins {
 }
 
 android {
-    namespace 'com.example.securemi'
+    namespace "com.GokulBorade.securemi"
     compileSdk 33
 buildFeatures{
     viewBinding true
 }
     defaultConfig {
-        applicationId "com.example.securemi"
+        applicationId "com.GokulBorade.securemi"
         minSdk 24
         targetSdk 33
         versionCode 1
@@ -69,7 +69,8 @@ dependencies {
     implementation 'com.hbb20:ccp:2.7.0'
     //lottie
     implementation("com.airbnb.android:lottie:6.1.0")
-    //
+    // for toast
+    implementation 'io.github.shashank02051997:FancyToast:2.0.2'
 
 
 }

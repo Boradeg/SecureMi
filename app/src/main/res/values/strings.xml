@@ -12,4 +12,14 @@
     <string name="enter_friend_name">Enter Friend Name</string>
     <string name="todo">TODO</string>
     <string name="contrycodewomanimage">ContryCodeWomanImage</string>
+    <string name="caller_detail">Caller Detail</string>
+    <string name="presets">Presets</string>
+    <string name="add_friends">Add Friend</string>
+    <string name="enter_friend_number">Enter Friend Number</string>
+    <string name="brother">Brother</string>
+    <string name="_8411975663">8411975663</string>
+    <string name="_00_10">00.10</string>
+    <string name="add_call">Add call</string>
+    <string name="record">Record</string>
+    <string name="vidio">Vidio</string>
 </resources>

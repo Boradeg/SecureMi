@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context="com.GokulBorade.securemi.activities.CallActivity2">
+
+    <ImageView
+        android:id="@+id/callerImage"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="108dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/rimzim" />
+
+
+    <TextView
+        android:id="@+id/callerName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Brother"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/callerImage"
+        app:layout_constraintStart_toStartOf="@+id/callerImage"
+        app:layout_constraintTop_toBottomOf="@+id/callerImage"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/callerNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="8411975663"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/callerImage"
+        app:layout_constraintStart_toStartOf="@+id/callerImage"
+        app:layout_constraintTop_toBottomOf="@+id/callerName"
+        tools:ignore="MissingConstraints" />
+
+
+    <ImageView
+        android:id="@+id/callAcceptButton"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginEnd="36dp"
+        android:src="@drawable/callaccept"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/callerNumber"
+        app:layout_constraintVertical_bias="0.818" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Accept"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/callAcceptButton"
+        app:layout_constraintHorizontal_bias="0.612"
+        app:layout_constraintStart_toStartOf="@+id/callAcceptButton"
+        app:layout_constraintTop_toBottomOf="@+id/callAcceptButton" />
+
+    <ImageView
+        android:id="@+id/callRejectButton"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginEnd="192dp"
+        android:src="@drawable/callreject"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/callAcceptButton"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/callerNumber"
+        app:layout_constraintVertical_bias="0.817" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Reject"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/callRejectButton"
+        app:layout_constraintHorizontal_bias="0.612"
+        app:layout_constraintStart_toStartOf="@+id/callRejectButton"
+        app:layout_constraintTop_toBottomOf="@+id/callRejectButton"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

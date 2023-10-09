@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:fitsSystemWindows="true"
     android:layout_height="match_parent"
-    tools:context=".activities.MainActivity">
+    tools:context="com.GokulBorade.securemi.activities.MainActivity">
 
 
     <com.google.android.material.appbar.AppBarLayout
@@ -13,6 +13,7 @@
         android:id="@+id/tb"
         android:layout_height="70dp"
         android:gravity="center"
+        android:visibility="gone"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         >
 

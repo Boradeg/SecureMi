@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".activities.ViewRegisteredActivity">
+    tools:context="com.GokulBorade.securemi.activities.ViewRegisteredActivity">
     <com.google.android.material.appbar.AppBarLayout
 
         android:id="@+id/tb"

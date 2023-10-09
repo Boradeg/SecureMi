@@ -1,0 +1,168 @@
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical"
+
+        tools:context="com.GokulBorade.securemi.activities.callerDetailActivity">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
+            <com.google.android.material.appbar.AppBarLayout
+
+                android:id="@+id/tb"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:gravity="center"
+
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="?attr/colorPrimary"
+                    app:logo="@drawable/urgent"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                    app:title="Woman Safety"
+                    app:titleMarginStart="50dp"
+                    app:titleTextColor="#DF1056" />
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            tools:ignore="UseCompoundDrawables">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:text="set up a fake caller"
+                android:textColor="#302A2A"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:src="@drawable/team"
+                android:contentDescription="@string/todo" />
+
+
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="30dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginHorizontal="30dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="80dp"
+                android:layout_height="60dp"
+                android:background="@drawable/border"
+                android:gravity="center"
+
+                >
+
+                <ImageView
+                    android:id="@+id/countwryCode"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:src="@drawable/woman3"
+                    android:contentDescription="@string/contrycodewomanimage" />
+            </LinearLayout>
+            <EditText
+                android:id="@+id/callerName"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginStart="30dp"
+                android:background="@drawable/border"
+                android:textAlignment="center"
+                android:hint="@string/enter_friend_name"
+                android:autofillHints="" />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:layout_marginHorizontal="30dp"
+            android:orientation="horizontal">
+
+            <com.hbb20.CountryCodePicker
+                android:id="@+id/countryCode"
+                android:layout_width="80dp"
+                android:layout_height="60dp"
+                android:background="@drawable/border"
+                android:gravity="center"
+                app:ccpDialog_keyboardAutoPopup="false"
+                app:ccp_arrowSize="16dp"
+                app:ccp_autoFormatNumber="true"
+                app:ccp_showArrow="true"
+                app:ccp_showFlag="true"
+                app:ccp_showFullName="false"
+                app:ccp_showNameCode="false"
+                app:ccp_showPhoneCode="true"
+
+                app:ccp_textSize="16dp" />
+
+            <EditText
+                android:id="@+id/callerNumber"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginStart="30dp"
+                android:background="@drawable/border"
+                android:textAlignment="center"
+                android:hint="  Enter Friend Number" />
+
+
+        </LinearLayout>
+
+
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_gravity="center"
+            >
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/saveBtn"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/animation_btn2"
+                android:text="Call"
+                android:layout_marginTop="30dp"
+                android:layout_gravity="bottom"
+                android:textAllCaps="false"
+                android:textColor="@color/white" />
+        </RelativeLayout>
+
+
+
+    </LinearLayout>
+

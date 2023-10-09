@@ -7,15 +7,12 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical"
 
-    tools:context=".activities.AddTrustyNumberActivity">
+    tools:context="com.GokulBorade.securemi.activities.AddTrustyNumberActivity">
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-
         >
-
         <com.google.android.material.appbar.AppBarLayout
 
             android:id="@+id/tb"
@@ -32,8 +29,7 @@
                 android:background="?attr/colorPrimary"
                 app:logo="@drawable/leftar6"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-
-                app:title="WOMAN SAFETY"
+                app:title="Woman Safety"
                 app:titleMarginStart="50dp"
                 app:titleTextColor="#DF1056" />
 
@@ -103,7 +99,8 @@
             android:background="@drawable/border"
             android:textAlignment="center"
             android:hint="@string/enter_friend_name"
-            android:autofillHints="" />
+            android:autofillHints=""
+            android:inputType="text" />
 
 
     </LinearLayout>
@@ -140,7 +137,9 @@
             android:layout_marginStart="30dp"
             android:background="@drawable/border"
            android:textAlignment="center"
-            android:hint="  Enter Friend Number" />
+            android:hint="@string/enter_friend_number"
+            android:autofillHints="Enter Name"
+            android:inputType="number" />
 
 
     </LinearLayout>
@@ -159,29 +158,13 @@
         android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:background="@drawable/animation_btn"
-        android:text="Add Friend"
+        android:text="@string/add_friend"
         android:layout_marginTop="30dp"
         android:layout_gravity="bottom"
         android:textAllCaps="false"
         android:textColor="@color/white" />
 </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
 
-        android:layout_gravity="center"
-        >
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/signOutBtn"
-            android:layout_width="180dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/animation_btn"
-            android:text="Sign out"
-            android:layout_marginTop="30dp"
-            android:layout_gravity="bottom"
-            android:textAllCaps="false"
-            android:textColor="@color/white" />
-    </RelativeLayout>
 
 
 </LinearLayout>

@@ -11,8 +11,8 @@
 
     <item android:title="helpline"
         android:id="@+id/helplineFragment"
-        android:icon="@drawable/helpline2"/>
-    <item android:title="user"
+        android:icon="@drawable/helpline_updated"/>
+    <item android:title="Fake Call"
         android:id="@+id/userFragment"
-        android:icon="@drawable/pro9"/>
+        android:icon="@drawable/helpline2"/>
 </menu>

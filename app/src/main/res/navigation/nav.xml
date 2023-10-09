@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment2"
-        android:name="com.example.securemi.Fragment.HomeFragment"
+        android:name="com.GokulBorade.securemi.Fragment.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -40,12 +40,12 @@
     </fragment>
     <fragment
         android:id="@+id/helplineFragment"
-        android:name="com.example.securemi.Fragment.HelplineFragment"
+        android:name="com.GokulBorade.securemi.Fragment.HelplineFragment"
         android:label="fragment_helpline"
         tools:layout="@layout/fragment_helpline" />
     <fragment
         android:id="@+id/notificationFragment"
-        android:name="com.example.securemi.Fragment.NotificationFragment"
+        android:name="com.GokulBorade.securemi.Fragment.NotificationFragment"
         android:label="fragment_notification"
         tools:layout="@layout/fragment_notification" >
         <action
@@ -57,7 +57,7 @@
     </fragment>
     <fragment
         android:id="@+id/userFragment"
-        android:name="com.example.securemi.Fragment.UserFragment"
+        android:name="com.GokulBorade.securemi.Fragment.UserFragment"
         android:label="fragment_user"
         tools:layout="@layout/fragment_user" >
         <action
@@ -75,17 +75,17 @@
     </fragment>
     <activity
         android:id="@+id/signInActivity"
-        android:name="com.example.securemi.activities.SignInActivity"
+        android:name="com.GokulBorade.securemi.activities.SignInActivity"
         android:label="activity_sign_in"
         tools:layout="@layout/activity_sign_in" />
     <activity
         android:id="@+id/addTrustyNumberActivity"
-        android:name="com.example.securemi.activities.AddTrustyNumberActivity"
+        android:name="com.GokulBorade.securemi.activities.AddTrustyNumberActivity"
         android:label="activity_add_trusty_number"
         tools:layout="@layout/activity_add_trusty_number" />
     <activity
         android:id="@+id/viewRegisteredActivity"
-        android:name="com.example.securemi.activities.ViewRegisteredActivity"
+        android:name="com.GokulBorade.securemi.activities.ViewRegisteredActivity"
         android:label="activity_view_registered"
         tools:layout="@layout/activity_view_registered" />
 </navigation>

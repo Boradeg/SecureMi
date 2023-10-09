@@ -4,50 +4,213 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Fragment.UserFragment">
+    tools:context="com.GokulBorade.securemi.Fragment.UserFragment">
 
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:id="@+id/tb"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        tools:ignore="MissingConstraints">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            app:title="Woman Safety"
+            app:titleTextColor="#DF1056"
+            app:titleMarginStart="30dp"
+            app:logo="@drawable/urgent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#171616"
+            android:padding="4dp"
+            android:text="Fake Call"
+            android:textSize="23dp"
+            android:visibility="gone"
+            android:layout_marginStart="25dp"
+            />
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="1dp"
+    android:visibility="gone"
+    android:fontFamily="sans-serif-condensed-light"
+    android:textColor="#433A3A"
+    android:textStyle="italic"
+    android:text="Place a fake phone call and pretend you are talking to someone"
+    android:textSize="13dp"
+    android:layout_marginStart="25dp"
+    />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/recordButton"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="10dp"
+        android:background="@drawable/border"
+        app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/constraintLayout"
+        app:layout_constraintTop_toBottomOf="@+id/tb">
+
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="40dp"
+            android:padding="5dp"
+            android:textStyle="bold"
+            android:text="Fake call"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="2dp"
+            android:textSize="11dp"
+            android:textColor="@color/black"
+            android:padding="5dp"
+            android:text="Place a fake phone call and pretend you are talking to someone."
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="20dp"
+        android:background="@drawable/border"
+        app:layout_constraintTop_toBottomOf="@+id/recordButton"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="20dp">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            android:text="@string/caller_detail"
+            android:textColor="@color/black"
+            android:textSize="14dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="NotSibling" />
 
         <ImageView
-            android:id="@+id/profileImage"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/img"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="16dp" />
+            android:id="@+id/EM_icon"
+            android:layout_width="47dp"
+            android:layout_height="72dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="28dp"
+            android:src="@drawable/man_profile"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2"
+            app:layout_constraintVertical_bias="0.304" />
 
         <TextView
-            android:id="@+id/username"
+            android:id="@+id/callerName2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="John Doe"
-            android:textSize="18sp"
-            android:textColor="#333333"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="8dp" />
+            android:text="Brother"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.069"
+            app:layout_constraintStart_toEndOf="@+id/EM_icon"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/email"
+            android:id="@+id/callerNum2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="johndoe@example.com"
-            android:textSize="14sp"
-            android:textColor="#666666"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginTop="10dp"
+            android:text="9588631679"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="@+id/callerName2"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/callerName2"
+            app:layout_constraintTop_toBottomOf="@+id/callerName2" />
 
-        <Button
-            android:id="@+id/editProfileButton"
+        <ImageView
+            android:id="@+id/editIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Edit Profile"
-            android:backgroundTint="#007ACC"
-            android:textColor="#FFFFFF"
-            android:layout_gravity="center_horizontal" />
-    </LinearLayout>
+            android:layout_marginTop="16dp"
+            android:src="@drawable/edit"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.925"
+            app:layout_constraintStart_toEndOf="@+id/textView2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_fake_call"
+        android:layout_width="match_parent"
+        android:layout_height="128dp"
+        app:layout_constraintBottom_toTopOf="@+id/callBtn"
+        app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
+        app:layout_constraintStart_toStartOf="@+id/constraintLayout"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        app:layout_constraintVertical_bias="0.174"
+        tools:listitem="@layout/rv_item_fake_cll" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/callBtn"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/animation_btn2"
+        android:text="Call"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:textSize="14dp"
+        android:text="@string/presets"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/rv_fake_call"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.044"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        app:layout_constraintVertical_bias="0.272" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
